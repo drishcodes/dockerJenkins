@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "your-dockerhub-username/docker-jenkins-app"
+        IMAGE_NAME = "drishh/docker-jenkins-app"
     }
 
     stages {
@@ -16,13 +16,13 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t %IMAGE_NAME% .'
+                bat 'docker build -t docker-jenkins-app .'
             }
         }
 
         stage('Run Docker Container') {
             steps {
-                bat 'docker run --rm %IMAGE_NAME%'
+                bat 'docker run --rm docker-jenkins-app'
             }
         }
 
@@ -30,18 +30,18 @@ pipeline {
             steps {
                 withCredentials([usernamePassword(
                     credentialsId: 'dockerhub-creds',
-                    usernameVariable: 'DOCKER_USER',
-                    passwordVariable: 'DOCKER_PASS'
+                    usernameVariable: 'drishh',
+                    passwordVariable: '#Password@123'
                 )]) {
 
-                    bat 'docker login -u %DOCKER_USER% -p %DOCKER_PASS%'
+                    bat 'docker login -u drishh -p #Password@123'
                 }
             }
         }
 
         stage('Push Image to Docker Hub') {
             steps {
-                bat 'docker push %IMAGE_NAME%'
+                bat 'docker push docker-jenkins-app'
             }
         }
     }
