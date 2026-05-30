@@ -10,7 +10,7 @@ pipeline {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/drishcodes/dockerJenkins'
+                git 'https://github.com/drishcodes/dockerJenkins.git'
             }
         }
 
