@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        IMAGE_NAME = "drishh/dockerhihi"
+        IMAGE_NAME = "drishh/dockerhihihi"
     }
 
     stages {
@@ -16,7 +16,7 @@ pipeline {
 
         stage('Run Docker Container') {
             steps {
-                bat 'docker run --rm %IMAGE_NAME%'
+                bat 'docker run  %IMAGE_NAME%'
             }
         }
 
